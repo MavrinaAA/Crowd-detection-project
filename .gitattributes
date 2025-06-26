@@ -1,0 +1,18 @@
+# Установка корректных окончаний строк для разных ОС
+* text=auto
+
+# Jupyter Notebook
+*.ipynb text eol=lf
+
+# Python-файлы
+*.py text eol=lf
+
+# Markdown + Shell
+*.md text eol=lf
+*.sh text eol=lf
+
+# Бинарники
+*.pt binary
+*.mp4 binary
+*.jpg binary
+*.png binary
