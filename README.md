@@ -24,8 +24,19 @@ crowd_detection_project/
 ## Установка
 
 1. Склонируйте репозиторий или скачайте `.zip` с проектом
-2. Установите зависимости:
+2. Создайте и активируйте виртуальное окружение:
+- **Windows**:
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
 
+- **Linux/MacOS**:
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+3. Установите зависимости:
 ```bash
 pip install -r requirements.txt
 ```
@@ -57,6 +68,7 @@ python main.py --model weights/yolov8n_final.pt --source data/crowd.mp4 --output
 - Python 3.10
 - OpenCV
 - Ultralytics YOLOv8
+- PyTorch 2.0+
 
 ## Выводы по результатам работы программы
 

@@ -1,2 +1,5 @@
 ultralytics==8.0.226
 opencv-python
+torch==2.0.1
+torchvision==0.15.2
+numpy<2.0

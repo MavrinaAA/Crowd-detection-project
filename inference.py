@@ -4,7 +4,7 @@ inference.py — Обработка видео и детекция людей с
 
 import cv2
 from ultralytics import YOLO
-
+import os
 
 def run_inference(model_path: str, video_path: str, output_path: str) -> None:
     """
@@ -15,12 +15,25 @@ def run_inference(model_path: str, video_path: str, output_path: str) -> None:
         video_path (str): Входное видео
         output_path (str): Файл для финального видео с отрисовкой
     """
+    # Проверяем наличие файлов
+    if not os.path.exists(model_path):
+        raise FileNotFoundError(f"Model file not found: {model_path}")
+    if not os.path.exists(video_path):
+        raise FileNotFoundError(f"Source video file not found: {video_path}")
+
+    # Загружаем модель
     model = YOLO(model_path)
 
     cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        raise ValueError(f"Could not open video file: {video_path}")
+
     width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
     height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     fps = cap.get(cv2.CAP_PROP_FPS)
+
+    # Проверяем, что папка output существует
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
